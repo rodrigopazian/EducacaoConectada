@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EduConect</string>
+
+    <string name="view_i_exerc_title">Qual o exercício ou pergunta você deseja treinar?</string>
+    <string name="view_i_exerc_ph_ex">Copie e depois cole o exercício aqui.</string>
+
+
+    <string name="view_i_exerc_sbttle">Descreva as opções de resposta para seu exercício ou pergunta:</string>
+
+    <string name="view_i_exerc_alt_a">A</string>
+    <string name="view_i_exerc_ph_alt_a">Copie e depois cole as opções\n de respostas aqui.</string>
+
+    <string name="view_i_exerc_alt_b">B</string>
+    <string name="view_i_exerc_ph_alt_b">Copie e depois cole as opções\n de respostas aqui.</string>
+
+    <string name="view_i_exerc_alt_c">C</string>
+    <string name="view_i_exerc_ph_alt_c">Copie e depois cole as opções\n de respostas aqui.</string>
+
+    <string name="view_i_exerc_alt_d">D</string>
+    <string name="view_i_exerc_ph_alt_d">Copie e depois cole as opções\n de respostas aqui.</string>
+
+    <string name="view_i_exerc_alt_e">E</string>
+    <string name="view_i_exerc_ph_alt_e">Copie e depois cole as opções\n de respostas aqui.</string>
+
+
+    <string name="view_i_exerc_btn_plus">+</string>
+    <string name="view_i_exerc_btn_clear">Limpar</string>
+    <string name="view_i_exerc_btn_save">Salvar</string>
+
+</resources>
