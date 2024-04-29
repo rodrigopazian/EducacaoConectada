@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -36,8 +38,8 @@ fun ListExerciseView(
 ) {
 
     //Start - Var Val Declarations
-    val contextListExView =  LocalContext.current
-    val dataObjExerciseRepository = DataObjExerciseRepository(contextListExView)
+    val contextFunctionListExView =  LocalContext.current
+    val dataObjExerciseRepository = DataObjExerciseRepository(contextFunctionListExView)
 
     //var idTxtExercise by remember { mutableStateOf("") }
     val listTxtExercise by listExerciseViewModel.listTxtExercise.observeAsState(initial = listExerciseViewModel.listTxtExerciseVM(dataObjExerciseRepository))
@@ -57,12 +59,20 @@ fun ListExerciseView(
             horizontalAlignment = Alignment.CenterHorizontally,
 
             ) {
+
+
+            Spacer(modifier = Modifier.height(60.dp))
+
+
             Text(
                 text = "Lista de Exercícios",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = colorResource(id = R.color.purple_200)
             )
+
+            Spacer(modifier = Modifier.height(60.dp))
+
             Column {
                 listTxtExercise?.let {
                     ListExerciseItemComp(
