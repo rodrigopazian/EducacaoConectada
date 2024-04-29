@@ -12,16 +12,17 @@ class ListExerciseViewModel : ViewModel() {
 
 
     //DECLARATION OF PRIVATE VARIABLE THAT CAN'T BE MODIFIED OR OBSERVED FROM OUTSIDE THIS CLASS
-    private val _pairTxtExercise = MutableLiveData<Pair>()
+    private val _listTxtExercise = MutableLiveData<List<DataObjExercise>>()
     //DECLARATION OF A VARIABLE THAT GETS THE VALUE OF THE VARIABLE ABOVE SO IT CAN BE OBSERVED BUT NOT MODIFIED FROM OUTSIDE
-    val pairTxtExercise: LiveData<Pair> = _pairTxtExercise
+    val listTxtExercise: LiveData<List<DataObjExercise>> = _listTxtExercise
 
 
 
 
     //METHODS
-    fun onClickBtnExList(listExerciseRepository: DataObjExerciseRepository) {
-        _pairTxtExercise = pairTxtExFromDB
+    fun listTxtExerciseVM(dataObjExerciseRepository: DataObjExerciseRepository) : List<DataObjExercise>? {
+        _listTxtExercise.value = dataObjExerciseRepository.listExercises()
+        return listTxtExercise.value
     }
 
 

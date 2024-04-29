@@ -1,5 +1,6 @@
 package br.com.educonect.educonect.views
 
+import android.provider.ContactsContract.Data
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.educonect.educonect.R
 import br.com.educonect.educonect.components.ListExerciseItemComp
+import br.com.educonect.educonect.database.repository.DataObjExerciseRepository
 
 @Composable
 fun ListExerciseView(
@@ -33,9 +36,11 @@ fun ListExerciseView(
 ) {
 
     //Start - Var Val Declarations
+    val contextListExView =  LocalContext.current
+    val dataObjExerciseRepository = DataObjExerciseRepository(contextListExView)
 
     //var idTxtExercise by remember { mutableStateOf("") }
-    val pairTxtExercise by listExerciseViewModel.pairTxtExercise.observeAsState(initial = Pair("",""))
+    val listTxtExercise by listExerciseViewModel.listTxtExercise.observeAsState(initial = listExerciseViewModel.listTxtExerciseVM(dataObjExerciseRepository))
 
     Box(
         modifier = Modifier
@@ -58,8 +63,12 @@ fun ListExerciseView(
                 fontWeight = FontWeight.Bold,
                 color = colorResource(id = R.color.purple_200)
             )
-            Row {
-                ListExerciseItemComp()
+            Column {
+                listTxtExercise?.let {
+                    ListExerciseItemComp(
+                        listTxtExercises = it
+                    )
+                }
             }
             Text(
                 text = "$msgExController",
