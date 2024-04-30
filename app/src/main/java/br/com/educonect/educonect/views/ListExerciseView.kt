@@ -1,11 +1,9 @@
 package br.com.educonect.educonect.views
 
-import android.provider.ContactsContract.Data
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,17 +30,21 @@ import br.com.educonect.educonect.database.repository.DataObjExerciseRepository
 
 @Composable
 fun ListExerciseView(
-    listExerciseViewModel : ListExerciseViewModel,
+    listExerciseViewModel: ListExerciseViewModel,
     navController: NavController,
     msgExController: String
 ) {
 
     //Start - Var Val Declarations
-    val contextFunctionListExView =  LocalContext.current
+    val contextFunctionListExView = LocalContext.current
     val dataObjExerciseRepository = DataObjExerciseRepository(contextFunctionListExView)
 
     //var idTxtExercise by remember { mutableStateOf("") }
-    val listTxtExercise by listExerciseViewModel.listTxtExercise.observeAsState(initial = listExerciseViewModel.listTxtExerciseVM(dataObjExerciseRepository))
+    val listTxtExercise by listExerciseViewModel.listTxtExercise.observeAsState(
+        initial = listExerciseViewModel.listTxtExerciseVM(
+            dataObjExerciseRepository
+        )
+    )
 
     Box(
         modifier = Modifier
@@ -74,12 +76,15 @@ fun ListExerciseView(
             Spacer(modifier = Modifier.height(60.dp))
 
             Column {
-                listTxtExercise?.let {
-                    ListExerciseItemComp(
-                        listTxtExercises = it
-                    )
-                }
+                ListExerciseItemComp(
+                    navController,
+                    listTxtExercise,
+                    functionUpdateList = {
+                        listExerciseViewModel.listTxtExerciseVM(dataObjExerciseRepository)
+                    },
+                )
             }
+
             Text(
                 text = "$msgExController",
                 fontSize = 24.sp,

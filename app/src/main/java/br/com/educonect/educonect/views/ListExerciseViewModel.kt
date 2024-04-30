@@ -20,9 +20,10 @@ class ListExerciseViewModel : ViewModel() {
 
 
     //METHODS
+
     fun listTxtExerciseVM(dataObjExerciseRepository: DataObjExerciseRepository) : List<DataObjExercise>? {
         _listTxtExercise.value = dataObjExerciseRepository.listExercises()
-        return listTxtExercise.value
+        return listTxtExercise!!.value
     }
 
 

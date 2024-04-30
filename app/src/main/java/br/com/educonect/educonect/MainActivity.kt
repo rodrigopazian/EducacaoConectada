@@ -14,6 +14,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.educonect.educonect.ui.theme.EduconectTheme
+import br.com.educonect.educonect.views.EditInputExerciseView
+import br.com.educonect.educonect.views.EditInputExerciseViewModel
 import br.com.educonect.educonect.views.InputExerciseView
 import br.com.educonect.educonect.views.InputExerciseViewModel
 import br.com.educonect.educonect.views.ListExerciseView
@@ -61,6 +63,14 @@ class MainActivity : ComponentActivity() {
                                 ListExerciseViewModel(),
                                 navController,
                                 msgExController!!
+                            )
+                        }
+                        composable(route = "editExercise/{exerciseId}") {
+                            val exerciseId = it.arguments?.getLong("exerciseId")
+                            EditInputExerciseView(
+                                EditInputExerciseViewModel(),
+                                navController,
+                                exerciseId!!
                             )
                         }
                     }
