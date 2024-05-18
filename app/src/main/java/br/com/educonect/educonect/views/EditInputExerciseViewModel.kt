@@ -1,5 +1,7 @@
 package br.com.educonect.educonect.views
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -64,7 +66,25 @@ class EditInputExerciseViewModel : ViewModel() {
 
 
     fun editInputExerciseVMById(dataObjExerciseRepository: DataObjExerciseRepository,exerciseId: Long) : DataObjExercise? {
+        Log.i(ContentValues.TAG, "EDITINPTVIEWMODEL 1 - ID LOG FUN DAOREPO ${dataObjExerciseRepository}")
+        Log.i(ContentValues.TAG, "EDITINPTVIEWMODEL 2 - ID LOG FUN EXERCISEID ${exerciseId}")
         _editInputExercise.value = dataObjExerciseRepository.searchExerciseById(exerciseId)
+        Log.i(ContentValues.TAG, "EDITINPTVIEWMODEL 3 - ID LOG FUN VALUE CHNAGE TO ${dataObjExerciseRepository.searchExerciseById(exerciseId)}")
         return editInputExercise.value
     }
+//fun editInputExerciseVMById(dataObjExerciseRepository: DataObjExerciseRepository, exerciseId: Long): DataObjExercise? {
+//
+//    Log.i(ContentValues.TAG, "7 - ID LOG FUN DAOREPO ${dataObjExerciseRepository}")
+//    Log.i(ContentValues.TAG, "8 - ID LOG FUN EXERCISEID ${exerciseId}")
+//
+//    val exercise = dataObjExerciseRepository.searchExerciseById(exerciseId)!!
+//    Log.i(ContentValues.TAG, "9 - ID LOG FUN VALUE CHANGE TO $exercise")
+//
+//    if (exercise != null) {
+//        _editInputExercise.value = exercise
+//    } else {
+//        Log.i(ContentValues.TAG, "10 - Exercise not found for ID: $exerciseId")
+//    }
+//    return exercise
+//}
 }

@@ -1,6 +1,8 @@
 package br.com.educonect.educonect
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -13,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import br.com.educonect.educonect.ui.theme.EduconectTheme
 import br.com.educonect.educonect.views.EditInputExerciseView
 import br.com.educonect.educonect.views.EditInputExerciseViewModel
@@ -65,13 +68,26 @@ class MainActivity : ComponentActivity() {
                                 msgExController!!
                             )
                         }
-                        composable(route = "editExercise/{exerciseId}") {
-                            val exerciseId = it.arguments?.getLong("exerciseId")
+//                        composable(route = "editexercise/{id}") {
+//                          val id = it.arguments?.getString("id", 1)!!
+////                          val exerciseId = 1L
+//                            Log.i(ContentValues.TAG, "MAINACTIVITY 1 - ID LOG LONG $id")
+//                            EditInputExerciseView(
+//                                EditInputExerciseViewModel(),
+//                                navController,
+//                                id
+//                            )
+//                        }
+                        composable(
+                            route = "editexercise?id={id}",
+                            arguments = listOf(navArgument(name = "id"){
+                                defaultValue = 1L
+                            })
+                        ) {
                             EditInputExerciseView(
                                 EditInputExerciseViewModel(),
                                 navController,
-                                exerciseId!!
-                            )
+                                it.arguments?.getLong("id")                            )
                         }
                     }
 //

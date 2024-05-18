@@ -1,5 +1,7 @@
 package br.com.educonect.educonect.components
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -37,20 +39,26 @@ import br.com.educonect.educonect.model.DataObjExercise
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListExerciseItemComp(
-    navController: NavController,
     listTxtExercise: List<DataObjExercise>?,
-    functionUpdateList : () -> Unit
+    functionUpdateList : () -> Unit,
+    functionReturnIdOnClick : (Long) -> Unit
 ) {
+
+    Log.i(TAG, "LISTCOMPONENT 1 - LIST ID LOG ${listTxtExercise}")
 
     val contextFunctionListExItemComp =  LocalContext.current
 
 
     for (exercise in listTxtExercise!!) {
+
+        Log.i(TAG, "LISTCOMPONENT 2 - FOR - ID LOG  ${exercise}")
+
+        Log.i(TAG, "LISTCOMPONENT 3 - FOR - ID LOG  ${exercise.id}")
         Row (
             modifier = Modifier
                 .fillMaxWidth()
                 .defaultMinSize(minHeight = 100.dp)
-                .padding(10.dp,0.dp),
+                .padding(10.dp, 0.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
@@ -70,8 +78,7 @@ fun ListExerciseItemComp(
                     .defaultMinSize(minHeight = 100.dp),
                 colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.purple_200)),
                 onClick = {
-                    val exerciseId = exercise.id
-                    navController.navigate("inputExercise/$exerciseId")
+                    functionReturnIdOnClick(exercise.id)
                 }
                 ) {
 

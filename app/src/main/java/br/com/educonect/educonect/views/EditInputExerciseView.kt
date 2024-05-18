@@ -1,5 +1,7 @@
 package br.com.educonect.educonect.views
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -48,18 +50,25 @@ import br.com.educonect.educonect.model.DataObjExercise
 fun EditInputExerciseView(
     editInputExerciseViewModel: EditInputExerciseViewModel,
     navController: NavController,
-    exerciseId: Long?,
+    exId: Long?,
 ) {
 
+    Log.i(TAG, "EDITINPTVIEW 1 - ID LOG LONG ${exId}")
     //Start - Var Val Declarations
     val contextFunctionEditInputView = LocalContext.current
     val dataObjExerciseRepository = DataObjExerciseRepository(contextFunctionEditInputView)
 
+    Log.i(TAG, "EDITINPTVIEW 2 - ID LOG CONTEXT ${contextFunctionEditInputView}")
+    Log.i(TAG, "EDITINPTVIEW 3 - ID LOG REPO ${dataObjExerciseRepository}")
+    val idLong = exId!!.toLong()
+    val exidobj = editInputExerciseViewModel.editInputExerciseVMById(dataObjExerciseRepository, idLong!!)
     //var idTxtExercise by remember { mutableStateOf("") }
     val exerciseIdObj by editInputExerciseViewModel.editInputExercise.observeAsState(
-        initial = editInputExerciseViewModel.editInputExerciseVMById(dataObjExerciseRepository, exerciseId!!)
+        initial = editInputExerciseViewModel.editInputExerciseVMById(dataObjExerciseRepository, idLong)
     )
 
+    Log.i(TAG, "EDITINPTVIEW 4 - ID LOG EXERCISEIDOBJinitial ${exidobj}")
+    Log.i(TAG, "EDITINPTVIEW 5 - ID LOG EXERCISEIDOBJ ${exerciseIdObj}")
     //End - Var Val Declarations
 
 
@@ -108,6 +117,7 @@ fun EditInputExerciseView(
             }
 
 
+            Log.i(TAG, "EDITINPTVIEW 6 - ID LOG TXTEXERC ${exerciseIdObj!!.txtexerc}")
             //Start - Component Input Text Field
             InputTextField(
                 valueItf = exerciseIdObj!!.txtexerc,

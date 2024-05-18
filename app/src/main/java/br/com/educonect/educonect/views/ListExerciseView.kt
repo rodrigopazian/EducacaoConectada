@@ -1,5 +1,7 @@
 package br.com.educonect.educonect.views
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -77,10 +79,13 @@ fun ListExerciseView(
 
             Column {
                 ListExerciseItemComp(
-                    navController,
                     listTxtExercise,
                     functionUpdateList = {
                         listExerciseViewModel.listTxtExerciseVM(dataObjExerciseRepository)
+                    },
+                    functionReturnIdOnClick= {
+                        Log.i(ContentValues.TAG, "LIST EXERCISE VIEW 1 - ID LOG LONG ${it}")
+                        navController.navigate("editexercise?id=$it")
                     },
                 )
             }
